@@ -1,0 +1,21 @@
+body {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.input-group-prepend span{
+    width: 50px;
+    background-color: rgba(9,9,121,1);
+    color: white;
+    border:0 !important;
+}
+
+.card {
+    width: 400px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+.card-header h3 {
+    color: white;
+}

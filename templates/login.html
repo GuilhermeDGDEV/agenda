@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'login.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+            integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <title>Agenda</title>
+    </head>
+
+    <body>
+
+        <div class="container mt-5">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <form action="submit" method="post">{% csrf_token %}
+                        <div class="card-header">
+                            <h3>Login</h3>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="usuário" name="username" required>
+                            </div>
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="senha" name="password" required>
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="form-group">
+                                {% for message in messages %}
+                                    <strong class="text-danger">Erro: {{message}}</strong>
+                                {% endfor %}
+                                <button class="btn btn-primary float-right mb-2" type="submit">entrar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

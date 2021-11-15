@@ -1,11 +1,32 @@
 {% extends "model-page.html" %}
 
 {% block content %}
-    <h2>Agendamentos</h2>
 
-    <ul class="lista-eventos">
-        {% for evento in eventos %}
-        <li>{{ evento.titulo }} - {{ evento.get_data_criacao }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Agendamentos</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <th scope="col"></th>
+                            <th scope="col">Compromisso</th>
+                            <th scope="col">Início</th>
+                        </thead>
+                        <tbody>
+                            {% for evento in eventos %}
+                                <tr>
+                                    <th scope="row">{{ evento.id }}</th>
+                                    <td>{{ evento.titulo }}</td>
+                                    <td>{{ evento.get_data_criacao }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
