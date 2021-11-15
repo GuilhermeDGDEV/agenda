@@ -15,6 +15,7 @@
                             <th scope="col"></th>
                             <th scope="col">Compromisso</th>
                             <th scope="col">Início</th>
+                            <th scope="col"></th>
                         </thead>
                         <tbody>
                             {% for evento in eventos %}
@@ -22,6 +23,14 @@
                                     <th scope="row">{{ evento.id }}</th>
                                     <td>{{ evento.titulo }}</td>
                                     <td>{{ evento.get_data_criacao }}</td>
+                                    <td class="d-flex justify-content-end">
+                                        <a class="btn btn-primary mx-2" href="/agenda/evento/?id={{ evento.id }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a class="btn btn-danger mx-2" href="/agenda/evento/delete/{{ evento.id }}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

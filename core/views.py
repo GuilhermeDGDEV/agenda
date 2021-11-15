@@ -7,8 +7,23 @@ from django.contrib import messages
 
 
 @login_required(login_url='/login/')
+def delete_evento(request, id_evento):
+    usuario = request.user
+    evento = Evento.objects.get(id=id_evento)
+    if usuario == evento.usuario or usuario.username == 'admin':
+        evento.delete()
+    return redirect('/')
+
+
+@login_required(login_url='/login/')
 def evento(request):
-    return render(request, 'evento.html')
+    id_evento = request.GET.get('id')
+    dados = {}
+
+    if id_evento:
+        dados['evento'] = Evento.objects.get(id=id_evento)
+
+    return render(request, 'evento.html', dados)
 
 
 @login_required(login_url='/login/')
@@ -39,9 +54,20 @@ def submit_evento(request):
         titulo = request.POST.get('titulo')
         data_evento = request.POST.get('data_evento')
         descricao = request.POST.get('descricao')
+        id_evento = request.POST.get('id_evento')
+
         usuario = request.user
-        Evento.objects.create(
-            titulo=titulo, data_evento=data_evento, descricao=descricao, usuario=usuario)
+
+        if id_evento:
+            evento = Evento.objects.get(id=id_evento)
+            if evento.usuario == usuario:
+                evento.titulo = titulo
+                evento.descricao = descricao
+                evento.data_evento = data_evento
+                evento.save()
+        else:
+            Evento.objects.create(
+                titulo=titulo, data_evento=data_evento, descricao=descricao, usuario=usuario)
     return redirect('/')
 
 
